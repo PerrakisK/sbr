@@ -3,8 +3,8 @@
 #' Function for scalable Bayesian regression (SBR/SSBR) in normal linear models with multiple types (sources) of feature matrices (with K being the number of sources). When K = 1, SBR corresponds to standard ridge regression using one from the three available empirical Bayes estimators (see below) for the penalty parameter. For details see
 #' Perrakis and Mukherjee (2018).
 #' @author Konstanstinos Perrakis \email{konstantinos.perrakis@dzne.de}
-#' @author Sach Mukherjee \email{sach.mukherjee.dzne.de}
-#' @references Perrakis, K. and Mukherjee, S. (2018) Scalable Bayesian regression in high dimensions with multiple data sources. \url{https://arxiv.org/pdf/1710.00596.pdf}
+#' @author Sach Mukherjee \email{sach.mukherjee@dzne.de}
+#' @references Perrakis, K., Mukherjee, S and the Alzheimers Disease Neuroimaging Initiative. (2018) Scalable Bayesian regression in high dimensions with multiple data sources. \url{https://arxiv.org/pdf/1710.00596.pdf}
 #' @seealso \code{\link{gram}}
 #' @seealso \code{\link{gram.parallel}}
 #' @seealso \code{\link{predict.sbr}}

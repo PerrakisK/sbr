@@ -30,7 +30,7 @@ G1 <- gram(X, block=TRUE,block.size=100)  # block matrix multiplication
 all.equal(G0, G1)  
 }
 \references{
-Perrakis, K. and Mukherjee, S. (2018) Scalable Bayesian regression in high dimensions with multiple data sources. \url{https://arxiv.org/pdf/1710.00596.pdf}
+Perrakis, K., Mukherjee, S and the Alzheimers Disease Neuroimaging Initiative. (2018) Scalable Bayesian regression in high dimensions with multiple data sources. \url{https://arxiv.org/pdf/1710.00596.pdf}
 }
 \seealso{
 \code{\link{gram.parallel}}
@@ -38,5 +38,5 @@ Perrakis, K. and Mukherjee, S. (2018) Scalable Bayesian regression in high dimen
 \author{
 Konstanstinos Perrakis \email{konstantinos.perrakis@dzne.de}
 
-Sach Mukherjee \email{sach.mukherjee.dzne.de}
+Sach Mukherjee \email{sach.mukherjee@dzne.de}
 }

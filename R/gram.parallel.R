@@ -2,8 +2,8 @@
 #' 
 #' Function for calculating the (inner-product) Gram matrix that allows for block-matrix multiplication performed in parallel.
 #' @author Konstanstinos Perrakis \email{konstantinos.perrakis@dzne.de}
-#' @author Sach Mukherjee \email{sach.mukherjee.dzne.de}
-#' @references Perrakis, K. and Mukherjee, S. (2018) Scalable Bayesian regression in high dimensions with multiple data sources. \url{https://arxiv.org/pdf/1710.00596.pdf}
+#' @author Sach Mukherjee \email{sach.mukherjee@dzne.de}
+#' @references Perrakis, K., Mukherjee, S and the Alzheimers Disease Neuroimaging Initiative. (2018) Scalable Bayesian regression in high dimensions with multiple data sources. \url{https://arxiv.org/pdf/1710.00596.pdf}
 #' @param X a standardized feature matrix.
 #' @param cl the number of cores to use. Must be provided by the user.
 #' @param ... additional arguments passed from function \code{\link{gram}}.
