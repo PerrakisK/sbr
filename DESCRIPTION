@@ -2,7 +2,7 @@ Package: sbr
 Title: Sparse and Scalable Bayesian Regression for Linear Models 
 Version: 0.0.0.9000
 Authors@R: c(person("Konstantinos", "Perrakis", email = "konstantinos.perrakis@dzne.de", role = c("aut", "cre")), person("Sach", "Mukherjee", email = "sach.mukherjee@dzne.de", role = "aut"))
-Description: Bayesian ridge-type regression for normal linear models with multiple design matrices from different types of data sources. Also provides sparse solutions via posterior post-processing. Fast and tuning-free procedures that scale up to ultra-high dimensions.  
+Description: Scalable Bayesian regression for normal linear models with multiple design matrices from different types of data sources. Also provides sparse solutions via posterior post-processing. Fast and tuning-free procedures that scale up to ultra-high dimensions.  
 Depends: R (>= 2.14.0), doParallel, glmnet, corpcor
 License: GPL-2
 Encoding: UTF-8

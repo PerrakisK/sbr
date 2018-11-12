@@ -2,7 +2,7 @@
 % Please edit documentation in R/sbr.R
 \name{sbr}
 \alias{sbr}
-\title{Flexible Bayesian ridge regression and post-sparsification for multiple design matrices.}
+\title{Scalable Bayesian regression (SBR) and sparse SBR for normal linear regression with multiple predictor matrices.}
 \usage{
 sbr(y, X, trX, G, estimator = "MAP", sparsify = FALSE,
   relaxed = TRUE, sparse.control = 1, p.threshold = 5000,
@@ -39,7 +39,7 @@ sbr(y, X, trX, G, estimator = "MAP", sparsify = FALSE,
 \item{U.optim}{upper bound for the optimization procedure used to tune the shrinkage levels, default is 1e04.}
 }
 \value{
-An object with S3 class 'sbr' allowing for call to generic functions \code{\link{coef}} and \code{\link{predict.}}
+An object with S3 class 'sbr' allowing for call to generic functions \code{\link{coef}} and \code{\link{predict}}
 
 An object of class 'sbr' is a list containing the following components:
 \item{coefficients}{a 1-column matrix with the SBR beta estimates (when sparsify = FALSE) or a 2-column matrix with the SBR and SSBR beta estimates (when sparsify = TRUE). Note that the coefficients correspond to the standardized response variable and feature matrix.}
@@ -49,7 +49,7 @@ An object of class 'sbr' is a list containing the following components:
 \item{duration}{reported runtime}
 }
 \description{
-Function for scalable Bayesian regression (SBR/SSBR) in normal linear models with multiple types (sources) of feature matrices (with K being the number of sources). When K = 1, SBR corresponds to standard ridge regression using one from the three available empirical Bayes estimators for the penalty parameter. For details see
+Function for scalable Bayesian regression (SBR/SSBR) in normal linear models with multiple types (sources) of feature matrices (with K being the number of sources). When K = 1, SBR corresponds to standard ridge regression using one from the three available empirical Bayes estimators (see below) for the penalty parameter. For details see
 Perrakis and Mukherjee (2018).
 }
 \examples{
@@ -124,7 +124,9 @@ model3$duration # runtime
 Perrakis, K. and Mukherjee, S. (2018) Scalable Bayesian regression in high dimensions with multiple data sources. \url{https://arxiv.org/pdf/1710.00596.pdf}
 }
 \seealso{
-\code{\link{coef}}
+\code{\link{gram}}
+
+\code{\link{gram.parallel}}
 
 \code{\link{predict.sbr}}
 }

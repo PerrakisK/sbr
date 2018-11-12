@@ -32,6 +32,9 @@ all.equal(G0, G1)
 \references{
 Perrakis, K. and Mukherjee, S. (2018) Scalable Bayesian regression in high dimensions with multiple data sources. \url{https://arxiv.org/pdf/1710.00596.pdf}
 }
+\seealso{
+\code{\link{gram.parallel}}
+}
 \author{
 Konstanstinos Perrakis \email{konstantinos.perrakis@dzne.de}
 
