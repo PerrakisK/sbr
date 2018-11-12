@@ -1,11 +1,12 @@
-#' Flexible Bayesian ridge regression and post-sparsification for multiple design matrices.
+#' Scalable Bayesian regression (SBR) and sparse SBR for normal linear regression with multiple predictor matrices.
 #' 
-#' Function for scalable Bayesian regression (SBR/SSBR) in normal linear models with multiple types (sources) of feature matrices (with K being the number of sources). When K = 1, SBR corresponds to standard ridge regression using one from the three available empirical Bayes estimators for the penalty parameter. For details see
+#' Function for scalable Bayesian regression (SBR/SSBR) in normal linear models with multiple types (sources) of feature matrices (with K being the number of sources). When K = 1, SBR corresponds to standard ridge regression using one from the three available empirical Bayes estimators (see below) for the penalty parameter. For details see
 #' Perrakis and Mukherjee (2018).
 #' @author Konstanstinos Perrakis \email{konstantinos.perrakis@dzne.de}
 #' @author Sach Mukherjee \email{sach.mukherjee.dzne.de}
 #' @references Perrakis, K. and Mukherjee, S. (2018) Scalable Bayesian regression in high dimensions with multiple data sources. \url{https://arxiv.org/pdf/1710.00596.pdf}
-#' @seealso \code{\link{coef}}
+#' @seealso \code{\link{gram}}
+#' @seealso \code{\link{gram.parallel}}
 #' @seealso \code{\link{predict.sbr}}
 #' @param y a standardized response vector. 
 #' @param X a standardized feature matrix (if K = 1) or a list of standardized feature matrices (if K > 1).
@@ -21,7 +22,7 @@
 #' @param cl the number of cores to use when parallel = TRUE. Must be provided by the user.
 #' @param L.optim lower bound for the optimization procedure used to tune the shrinkage levels, default is 1e-04.
 #' @param U.optim upper bound for the optimization procedure used to tune the shrinkage levels, default is 1e04.
-#' @return An object with S3 class 'sbr' allowing for call to generic functions \code{\link{coef}} and \code{\link{predict.}}  
+#' @return An object with S3 class 'sbr' allowing for call to generic functions \code{\link{coef}} and \code{\link{predict}}  
 #' @return An object of class 'sbr' is a list containing the following components:
 #' \item{coefficients}{a 1-column matrix with the SBR beta estimates (when sparsify = FALSE) or a 2-column matrix with the SBR and SSBR beta estimates (when sparsify = TRUE). Note that the coefficients correspond to the standardized response variable and feature matrix.}
 #' \item{sigma2}{the variance component (at the posterior mode).} 

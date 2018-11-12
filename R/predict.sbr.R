@@ -8,7 +8,7 @@
 #' @param newdata a (standardized) data matrix from which to predict.
 #' @param coef choose whether to use the SBR beta estimates (default option "sbr") or the SSBR beta estimates (option "ssbr").
 #' @return Returns a vector of predictions.
-#' @seealso \code{\link{predict.sbr}}
+#' @seealso \code{\link{predict}}
 #' @export
 #' @examples
 #' y <- rnorm(100)

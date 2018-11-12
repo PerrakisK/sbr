@@ -11,8 +11,8 @@
 #' @seealso \code{\link{gram}}
 #' @export
 #' @examples
-#' X <- matrix(rnorm(100 * 300), 100, 300)                         # usual matrix multiplication
-#' G0 <- X %*% t(X)
+#' X <- matrix(rnorm(100 * 300), 100, 300)                         
+#' G0 <- gram(X)                                                   # usual matrix multiplication
 #' cores <- detectCores() - 1
 #' cores <- makeCluster(cores)
 #' registerDoParallel(cores)                                                               
