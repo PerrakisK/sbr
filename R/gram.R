@@ -1,4 +1,4 @@
-#' Gram function
+#' Function gram
 #' 
 #' Function for calculating the (inner-product) Gram matrix that allows for block-matrix multiplication.
 #' @author Konstanstinos Perrakis \email{konstantinos.perrakis@dzne.de}
@@ -14,7 +14,7 @@
 #' @export
 #' @examples 
 #' X <- matrix(rnorm(100 * 300), 100, 300)
-#' G0 <- X %*% t(X)                          # usual matrix multiplication                          
+#' G0 <- gram(X)                             # usual matrix multiplication                          
 #' G1 <- gram(X, block=TRUE,block.size=100)  # block matrix multiplication
 #' all.equal(G0, G1)  
 

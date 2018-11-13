@@ -2,12 +2,12 @@
 % Please edit documentation in R/sbr.R
 \name{sbr}
 \alias{sbr}
-\title{Scalable Bayesian regression (SBR) and sparse SBR for normal linear regression with multiple predictor matrices.}
+\title{Function sbr}
 \usage{
 sbr(y, X, trX, G, estimator = "MAP", sparsify = FALSE,
   relaxed = TRUE, sparse.control = 1, p.threshold = 5000,
-  cov.blocks = 1000, parallel = FALSE, cl, L.optim = 10^-4,
-  U.optim = 10^4)
+  cov.blocks = 1000, parallel = FALSE, cl, L.optim = 1e-04,
+  U.optim = 10000)
 }
 \arguments{
 \item{y}{a standardized response vector.}
@@ -24,13 +24,13 @@ sbr(y, X, trX, G, estimator = "MAP", sparsify = FALSE,
 
 \item{relaxed}{logical, if TRUE (default) the relaxed SSBR solution is calculated, if FALSE the general SSBR solution is calculated.}
 
-\item{sparse.control}{numerical value for controlling the effect of sample size (n) on the resulting SSBR solution. Default option is 1 (no control). A recommended option for sparser solutions is sparse.control = log(n).}
+\item{sparse.control}{numerical value for controlling the effect of sample size (n) on the resulting SSBR solution when relaxed = TRUE. Default option is 1 (no control). A recommended option for sparser solutions is sparse.control = log(n).}
 
 \item{p.threshold}{used for block-matrix computation of the main diagonal of the covariance matrix when sparsify = TRUE and relaxed = TRUE. It will be triggered for any source-matrix whose number of columns is larger than p.threshold.}
 
 \item{cov.blocks}{argument corresponding to block size (not the number of blocks) when the block-matrix computation is triggered (see above). Default option is 1000, i.e. blocks of dimensionality 1000 x 1000.}
 
-\item{parallel}{logical, if parallel = TRUE the calculation of variance components required for the SSBR solution is performed in parallel. Default is FALSE.}
+\item{parallel}{logical, if parallel = TRUE the calculation of variance components required for the relaxed SSBR solution is performed in parallel. Default is FALSE.}
 
 \item{cl}{the number of cores to use when parallel = TRUE. Must be provided by the user.}
 
@@ -49,44 +49,53 @@ An object of class 'sbr' is a list containing the following components:
 \item{duration}{reported runtime}
 }
 \description{
-Function for scalable Bayesian regression (SBR/SSBR) in normal linear models with multiple types (sources) of feature matrices (with K being the number of sources). When K = 1, SBR corresponds to standard ridge regression using one from the three available empirical Bayes estimators (see below) for the penalty parameter. For details see
-Perrakis and Mukherjee (2018).
+Function for scalable Bayesian regression (SBR) and sparse SBR (SSBR) in normal linear models with multiple types (sources) of feature matrices (with K being the number of sources). When K = 1, SBR corresponds to standard ridge regression using one from the three available empirical Bayes estimators (see below) for the penalty parameter. For details see
+Perrakis, Mukherjee and the Alzheimers Disease Neuroimaging Initiative. (2018).
 }
 \examples{
-################# Toy example with 3 data sources #################
+################# Example with 3 data sources #################
+
 library(mvtnorm)
 library(MCMCpack)
+
 ### GENERATION OF DATA ###
+
 ## sample size and number of predictors
-n<-50 
-p1<-10
-p2<-100
-p3<-300
+n <- 50 
+p1 <- 10
+p2 <- 100
+p3 <- 300
+
 ## generation of covariance matrices and feature matrices
-S1<-riwish(p1,diag(p1))
-S2<-riwish(p2,diag(p2))
-S3<-riwish(p3,diag(p3))
-X1<-matrix(rmvnorm(n*p1,rep(0,p1),S1),n,p1)
-X2<-matrix(rmvnorm(n*p2,rep(0,p2),S2),n,p2)
-X3<-matrix(rmvnorm(n*p3,rep(0,p3),S3),n,p3)
+S1 <- riwish(p1, diag(p1))
+S2 <- riwish(p2, diag(p2))
+S3 <- riwish(p3, diag(p3))
+X1 <- matrix(rmvnorm(n * p1, rep(0, p1), S1), n, p1)
+X2 <- matrix(rmvnorm(n * p2, rep(0 ,p2), S2), n, p2)
+X3 < -matrix(rmvnorm(n * p3, rep(0, p3), S3), n, p3)
+
 ## sparsity and generation of betas
-s2<-p2*0.3
-s3<-p3*0.01
-non.zero2<-sample(1:p2,s2)
-non.zero3<-sample(1:p3,s3)
-b1<-rnorm(10,0,2.5)
-b2<-rep(0,p2)
-b2[non.zero2]<-rnorm(s2)
-b3<-rep(0,p3)
-b3[non.zero3]<-rnorm(s3)
-mu<-X1\%*\%b1+X2\%*\%b2+X3\%*\%b3
-y<-rnorm(n,mu,sd=0.5)
+s2 <- p2 * 0.3
+s3 <- p3 * 0.01
+non.zero2 <- sample(1:p2, s2)
+non.zero3 <- sample(1:p3, s3)
+b1 <- rnorm(10, 0, 2.5)
+b2 <- rep(0, p2)
+b2[non.zero2] <- rnorm(s2)
+b3 <- rep(0, p3)
+b3[non.zero3] <- rnorm(s3)
+
+mu <- X1 \%*\% b1 + X2 \%*\% b2 + X3 \%*\% b3
+y <- rnorm(n, mu, sd=0.5)
+
 ## standardize
-y<-scale(y)
-X1<-scale(X1)
-X2<-scale(X2)
-X3<-scale(X3)
+y <- scale(y)
+X1 <- scale(X1)
+X2 <- scale(X2)
+X3 <- scale(X3)
+
 G1 <- X1 \%*\% t(X1); G2 <- X2 \%*\% t(X2); G3 <- X3 \%*\% t(X3)
+
 ## make lists
 G <- list(G1, G2, G3)
 X <- list(X1, X2, X3)
@@ -101,16 +110,16 @@ model1 <- sbr(y = y, X = X,G = G, estimator = 'ML')
 
 model2 <- sbr(y = y, X = X,G = G, estimator = 'ML', sparsify = TRUE, p.threshold = 100, cov.blocks = 100) 
 
-# 3) SSBR with the ML lambda-estimator using block-matrix computations for the variances of X3 (since p3=300) and control equal to log(n) for the effect of sample size
+# 3) SSBR with the ML lambda-estimator
 
-model3 <- sbr(y = y, X = X, G = G, estimator = 'ML', sparsify = TRUE, relaxed = FALSE, p.threshold = 100, cov.blocks = 100, sparse.control = log(n))
+model3 <- sbr(y = y, X = X, G = G, estimator = 'ML', sparsify = TRUE, relaxed = FALSE)
 
-# 4) parallel computing for the configuration of model3
+# 4) parallel computing for the configuration of model2
 
 cores <- detectCores() - 1
 cores <- makeCluster(cores)
 registerDoParallel(cores)
-model4 <- sbr(y = y, X = X, G = G, estimator = 'ML', parallel = TRUE, cl = cores, sparsify = TRUE, p.threshold = 100, cov.blocks = 50, sparse.control = log(n))
+model4 <- sbr(y = y, X = X, G = G, estimator = 'ML', parallel = TRUE, cl = cores, sparsify = TRUE, p.threshold = 100, cov.blocks = 100)
 stopCluster(cores)
 
 ### EXTRACTING OUTPUT FROM A MODEL ###
@@ -121,7 +130,7 @@ model3$sigma2   # error variance
 model3$duration # runtime
 }
 \references{
-Perrakis, K., Mukherjee, S and the Alzheimers Disease Neuroimaging Initiative. (2018) Scalable Bayesian regression in high dimensions with multiple data sources. \url{https://arxiv.org/pdf/1710.00596.pdf}
+Perrakis, K., Mukherjee, S. and the Alzheimers Disease Neuroimaging Initiative. (2018) Scalable Bayesian regression in high dimensions with multiple data sources. \url{https://arxiv.org/pdf/1710.00596.pdf}
 }
 \seealso{
 \code{\link{gram}}

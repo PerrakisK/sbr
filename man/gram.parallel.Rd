@@ -2,7 +2,7 @@
 % Please edit documentation in R/gram.parallel.R
 \name{gram.parallel}
 \alias{gram.parallel}
-\title{Gram parallel function}
+\title{Function gram.parallel}
 \usage{
 gram.parallel(X, cl, ...)
 }

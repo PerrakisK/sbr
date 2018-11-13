@@ -1,4 +1,4 @@
-#' Predict SBR/SSBR
+#' Function predict.sbr
 #' 
 #' Predict S3 method for objects of class 'sbr'. 
 #' @author Konstanstinos Perrakis \email{konstantinos.perrakis@dzne.de}

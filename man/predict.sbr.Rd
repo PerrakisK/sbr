@@ -2,7 +2,7 @@
 % Please edit documentation in R/predict.sbr.R
 \name{predict.sbr}
 \alias{predict.sbr}
-\title{Predict SBR/SSBR}
+\title{Function predict.sbr}
 \usage{
 \method{predict}{sbr}(object, newdata, coef = "sbr")
 }

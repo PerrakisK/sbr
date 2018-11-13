@@ -1,4 +1,4 @@
-#' Gram parallel function
+#' Function gram.parallel
 #' 
 #' Function for calculating the (inner-product) Gram matrix that allows for block-matrix multiplication performed in parallel.
 #' @author Konstanstinos Perrakis \email{konstantinos.perrakis@dzne.de}

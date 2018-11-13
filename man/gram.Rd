@@ -2,7 +2,7 @@
 % Please edit documentation in R/gram.R
 \name{gram}
 \alias{gram}
-\title{Gram function}
+\title{Function gram}
 \usage{
 gram(X, trX, block = FALSE, block.size = 1000, show.progress = FALSE)
 }
@@ -25,7 +25,7 @@ Function for calculating the (inner-product) Gram matrix that allows for block-m
 }
 \examples{
 X <- matrix(rnorm(100 * 300), 100, 300)
-G0 <- X \%*\% t(X)                          # usual matrix multiplication                          
+G0 <- gram(X)                             # usual matrix multiplication                          
 G1 <- gram(X, block=TRUE,block.size=100)  # block matrix multiplication
 all.equal(G0, G1)  
 }
