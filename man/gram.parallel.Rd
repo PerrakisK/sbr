@@ -11,7 +11,7 @@ gram.parallel(X, cl, ...)
 
 \item{cl}{the number of cores to use. Must be provided by the user.}
 
-\item{...}{additional arguments passed from function \code{\link{gram}}.}
+\item{...}{additional arguments passed from function \code{\link{gram}}. One can additionanly use block matrix multiplication within each core. Warning: in this case argument block.size must not exceed floor(ncol(X)/number of cores) - 1.}
 }
 \value{
 Returns the inner-product Gram matrix.
@@ -20,17 +20,17 @@ Returns the inner-product Gram matrix.
 Function for calculating the (inner-product) Gram matrix that allows for block-matrix multiplication performed in parallel.
 }
 \examples{
-X <- matrix(rnorm(100 * 300), 100, 300)                         
-G0 <- gram(X)                                                   # usual matrix multiplication
+X <- matrix(rnorm(100 * 300), 100, 300)
+G0 <- gram(X)                        # usual matrix multiplication
 cores <- detectCores() - 1
 cores <- makeCluster(cores)
-registerDoParallel(cores)                                                               
-G1 <- gram.parallel(X, cl = cores, block=TRUE, block.size=50)   # block matrix multiplication
+registerDoParallel(cores)
+G1 <- gram.parallel(X, cl = cores)   # parallel matrix multiplication
 stopCluster(cores)
-all.equal(G0, G1)  
+all.equal(G0, G1)
 }
 \references{
-Perrakis, K., Mukherjee, S and the Alzheimers Disease Neuroimaging Initiative. (2018) Scalable Bayesian regression in high dimensions with multiple data sources. \url{https://arxiv.org/pdf/1710.00596.pdf}
+Perrakis, K., Mukherjee, S. and the Alzheimers Disease Neuroimaging Initiative. (2018) Scalable Bayesian regression in high dimensions with multiple data sources. \url{https://arxiv.org/pdf/1710.00596.pdf}
 }
 \seealso{
 \code{\link{gram}}

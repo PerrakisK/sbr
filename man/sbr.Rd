@@ -72,7 +72,7 @@ S2 <- riwish(p2, diag(p2))
 S3 <- riwish(p3, diag(p3))
 X1 <- matrix(rmvnorm(n * p1, rep(0, p1), S1), n, p1)
 X2 <- matrix(rmvnorm(n * p2, rep(0 ,p2), S2), n, p2)
-X3 < -matrix(rmvnorm(n * p3, rep(0, p3), S3), n, p3)
+X3 <- matrix(rmvnorm(n * p3, rep(0, p3), S3), n, p3)
 
 ## sparsity and generation of betas
 s2 <- p2 * 0.3

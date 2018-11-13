@@ -3,7 +3,7 @@
 #' Predict S3 method for objects of class 'sbr'. 
 #' @author Konstanstinos Perrakis \email{konstantinos.perrakis@dzne.de}
 #' @author Sach Mukherjee \email{sach.mukherjee@dzne.de}
-#' @references Perrakis, K., Mukherjee, S and the Alzheimers Disease Neuroimaging Initiative. (2018) Scalable Bayesian regression in high dimensions with multiple data sources. \url{https://arxiv.org/pdf/1710.00596.pdf}
+#' @references Perrakis, K., Mukherjee, S. and the Alzheimers Disease Neuroimaging Initiative. (2018) Scalable Bayesian regression in high dimensions with multiple data sources. \url{https://arxiv.org/pdf/1710.00596.pdf}
 #' @param object an object of class 'sbr'.
 #' @param newdata a (standardized) data matrix from which to predict.
 #' @param coef choose whether to use the SBR beta estimates (default option "sbr") or the SSBR beta estimates (option "ssbr").

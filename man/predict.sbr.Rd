@@ -28,7 +28,7 @@ predict1 <- predict(model, X[1:10, ], coef = 'sbr')
 predict2 <- predict(model, X[1:10, ], coef = 'ssbr')
 }
 \references{
-Perrakis, K., Mukherjee, S and the Alzheimers Disease Neuroimaging Initiative. (2018) Scalable Bayesian regression in high dimensions with multiple data sources. \url{https://arxiv.org/pdf/1710.00596.pdf}
+Perrakis, K., Mukherjee, S. and the Alzheimers Disease Neuroimaging Initiative. (2018) Scalable Bayesian regression in high dimensions with multiple data sources. \url{https://arxiv.org/pdf/1710.00596.pdf}
 }
 \seealso{
 \code{\link{predict}}
